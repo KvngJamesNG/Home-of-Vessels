@@ -1,0 +1,50 @@
+<section class="relative min-h-[600px] flex items-center overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-red-50">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1596626417050-39c7f6ddd2c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYXJ0JTIwcGF0dGVybnxlbnwxfHx8fDE3NjA5NDI2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="African Art Pattern" class="w-full h-full object-cover" />
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <div class="inline-block">
+                    <div class="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-sm">
+                        <div class="w-2 h-2 bg-amber-600 rounded-full animate-pulse"></div>
+                        <span class="text-sm text-slate-700">Transforming Lives Through Art & Culture</span>
+                    </div>
+                </div>
+
+                <h1 class="text-4xl font-bold text-slate-900">
+                    Bridging Cultures,
+                    <span class="block text-amber-700">Healing Communities</span>
+                </h1>
+
+                <p class="text-lg text-slate-600">
+                    We harness the power of global art and culture to support individuals
+                    with autism, address violence, resolve disputes, and celebrate heritage through
+                    exhibitions and performances worldwide.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <%= link_to "Explore Courses", courses_path, class: "bg-amber-700 text-white px-8 py-3 rounded-lg hover:bg-amber-800 transition-colors flex items-center gap-2" %>
+                    <%= link_to "View Gallery", gallery_path, class: "bg-white text-amber-700 px-8 py-3 rounded-lg border-2 border-amber-700 hover:bg-amber-50 transition-colors" %>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
+                    <img src="https://images.unsplash.com/photo-1760428300773-d63612e252c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWx0dXJhbCUyMGRhbmNlJTIwcGVyZm9ybWFuY2V8ZW58MXx8fHwxNzYwODUxMzUyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Cultural Performance" class="w-full h-full object-cover" />
+                </div>
+                <!-- Decorative Elements -->
+                <div class="absolute -top-6 -right-6 w-32 h-32 bg-amber-600 rounded-full opacity-20 blur-2xl"></div>
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-orange-600 rounded-full opacity-20 blur-2xl"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative Bottom Border -->
+    <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-600 via-orange-500 to-red-600"></div>
+</section>

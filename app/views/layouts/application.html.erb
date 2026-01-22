@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= content_for(:title) || "Home of Vessels - Transforming Lives Through Art & Culture" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M16 6C16 6 13 9 13 16C13 23 16 26 19 26C22 26 25 23 25 16C25 9 22 6 19 6C16 6 16 6 16 6Z' fill='%23d97706'/><path d='M17 10C17 10 16 11 16 14C16 17 17 18 19 18C21 18 22 17 22 14C22 11 21 10 19 10C17 10 17 10 17 10Z' fill='white' fill-opacity='0.3'/><circle cx='15' cy='13' r='0.5' fill='white'/><circle cx='23' cy='13' r='0.5' fill='white'/><path d='M19 11L19 17' stroke='white' stroke-width='0.3'/></svg>">
+
+    <!-- Preload Inter font for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+
+    <style>
+        /* Ensure full width and proper centering */
+        .container-custom {
+            width: 100%;
+            max-width: 80rem;
+            /* 7xl */
+        }
+
+        /* Fix any potential margin/padding issues */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Style for button_to elements to look like links */
+        form.button_to {
+            display: inline;
+        }
+
+        form.button_to input[type="submit"] {
+            background: none;
+            border: none;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+            padding: 0;
+            text-align: left;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <%= render "shared/navigation" %>
+
+    <!-- Flash Messages -->
+    <% if notice %>
+    <div class="bg-green-50 border-l-4 border-green-400 p-4">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-green-700"><%= notice %></p>
+            </div>
+        </div>
+    </div>
+    <% end %>
+
+    <% if alert %>
+    <div class="bg-red-50 border-l-4 border-red-400 p-4">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-red-700"><%= alert %></p>
+            </div>
+        </div>
+    </div>
+    <% end %>
+
+    <main class="w-full">
+        <%= yield %>
+    </main>
+    <%= render "shared/footer" %>
+</body>
+
+</html>

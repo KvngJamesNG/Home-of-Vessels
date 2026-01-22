@@ -1,0 +1,135 @@
+<nav class="bg-white shadow-md sticky top-0 z-50 border-b-4 border-amber-600 w-full">
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <!-- Logo -->
+            <%= link_to root_path, class: "flex items-center space-x-3 group" do %>
+            <div class="w-12 h-12 bg-gradient-to-br from-amber-600 via-orange-500 to-red-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                <svg class="w-8 h-8 text-white" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 8C20 8 16 12 16 20C16 28 20 32 24 32C28 32 32 28 32 20C32 12 28 8 24 8C20 8 20 8 20 8Z" fill="currentColor" />
+                    <path d="M22 12C22 12 20 14 20 18C20 22 22 24 24 24C26 24 28 22 28 18C28 14 26 12 24 12C22 12 22 12 22 12Z" fill="white" fill-opacity="0.3" />
+                    <circle cx="18" cy="16" r="1" fill="white" />
+                    <circle cx="30" cy="16" r="1" fill="white" />
+                    <path d="M24 14L24 22" stroke="white" stroke-width="0.5" />
+                </svg>
+            </div>
+            <div class="flex flex-col">
+                <span class="text-xl font-bold text-slate-900 group-hover:text-amber-700 transition-colors duration-200">Home of Vessels</span>
+                <span class="text-xs text-amber-600 font-medium">Worldwide</span>
+            </div>
+            <% end %>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <%= link_to "Home", root_path, class: "text-base font-medium text-slate-700 hover:text-amber-600 transition-colors duration-200 #{'text-amber-700 font-semibold' if current_page?(root_path)}" %>
+                <%= link_to "About Us", about_path, class: "text-base font-medium text-slate-700 hover:text-amber-600 transition-colors duration-200 #{'text-amber-700 font-semibold' if current_page?(about_path)}" %>
+                <%= link_to "Courses", courses_path, class: "text-base font-medium text-slate-700 hover:text-amber-600 transition-colors duration-200 #{'text-amber-700 font-semibold' if current_page?(courses_path)}" %>
+                <%= link_to "Gallery", gallery_path, class: "text-base font-medium text-slate-700 hover:text-amber-600 transition-colors duration-200 #{'text-amber-700 font-semibold' if current_page?(gallery_path)}" %>
+                <%= link_to "Contact", contact_path, class: "text-base font-medium text-slate-700 hover:text-amber-600 transition-colors duration-200 #{'text-amber-700 font-semibold' if current_page?(contact_path)}" %>
+
+                <% if logged_in? %>
+                <div class="relative group" id="user-menu">
+                    <button class="flex items-center space-x-3 p-2 rounded-lg hover:bg-slate-50 transition-colors duration-200">
+                        <img src="<%= current_user.gravatar_url(size: 64) %>" alt="<%= current_user.name %>" class="w-8 h-8 rounded-full border-2 border-amber-200">
+                        <svg class="h-4 w-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div class="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-slate-200 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform group-hover:translate-y-0 translate-y-2">
+                        <div class="px-4 py-3 border-b border-slate-100">
+                            <p class="text-sm font-semibold text-slate-900"><%= current_user.name %></p>
+                            <p class="text-sm text-slate-500 truncate"><%= current_user.email %></p>
+                        </div>
+                        <%= link_to "My Profile", profile_path, class: "block px-4 py-2 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-700 transition-colors duration-200" %>
+                        <%= link_to "My Courses", courses_path, class: "block px-4 py-2 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-700 transition-colors duration-200" %>
+                        <div class="border-t border-slate-200 my-1"></div>
+                        <%= button_to "Logout", logout_path, method: :delete, class: "w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-amber-50 hover:text-amber-700 transition-colors duration-200" %>
+                    </div>
+                </div>
+                <% else %>
+                <%= link_to "Login", login_path, class: "text-base font-medium text-slate-700 hover:text-amber-600 transition-colors duration-200 #{'text-amber-700 font-semibold' if current_page?(login_path)}" %>
+                <% end %>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors duration-200" id="mobile-menu-button">
+                <svg class="h-6 w-6 text-slate-700" id="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg class="h-6 w-6 text-slate-700 hidden" id="close-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden py-4 border-t border-slate-200 hidden" id="mobile-menu">
+            <%= link_to "Home", root_path, class: "block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors duration-200 #{'bg-amber-50 text-amber-700' if current_page?(root_path)}" %>
+            <%= link_to "About Us", about_path, class: "block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors duration-200 #{'bg-amber-50 text-amber-700' if current_page?(about_path)}" %>
+            <%= link_to "Courses", courses_path, class: "block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors duration-200 #{'bg-amber-50 text-amber-700' if current_page?(courses_path)}" %>
+            <%= link_to "Gallery", gallery_path, class: "block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors duration-200 #{'bg-amber-50 text-amber-700' if current_page?(gallery_path)}" %>
+            <%= link_to "Contact", contact_path, class: "block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors duration-200 #{'bg-amber-50 text-amber-700' if current_page?(contact_path)}" %>
+
+            <% if logged_in? %>
+            <div class="border-t border-slate-200 my-2 pt-4">
+                <div class="flex items-center space-x-3 px-4 py-3 mb-2">
+                    <img src="<%= current_user.gravatar_url(size: 80) %>" alt="<%= current_user.name %>" class="w-10 h-10 rounded-full border-2 border-amber-200">
+                    <div>
+                        <p class="text-sm font-semibold text-slate-900"><%= current_user.name %></p>
+                        <p class="text-xs text-slate-500"><%= current_user.email %></p>
+                    </div>
+                </div>
+                <%= link_to "My Profile", profile_path, class: "block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors duration-200 #{'bg-amber-50 text-amber-700' if current_page?(profile_path)}" %>
+                <%= button_to "Logout", logout_path, method: :delete, class: "block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors duration-200" %>
+            </div>
+            <% else %>
+            <%= link_to "Login", login_path, class: "block w-full text-left px-4 py-3 text-base font-medium text-slate-700 hover:bg-slate-50 transition-colors duration-200 #{'bg-amber-50 text-amber-700' if current_page?(login_path)}" %>
+            <% end %>
+        </div>
+    </div>
+</nav>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const userMenu = document.getElementById('user-menu');
+
+        // Mobile menu toggle
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                const isHidden = mobileMenu.classList.contains('hidden');
+
+                if (isHidden) {
+                    mobileMenu.classList.remove('hidden');
+                    menuIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                } else {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                }
+            });
+        }
+
+        // Improved dropdown behavior
+        if (userMenu) {
+            let hideTimeout;
+
+            userMenu.addEventListener('mouseenter', function() {
+                clearTimeout(hideTimeout);
+            });
+
+            userMenu.addEventListener('mouseleave', function() {
+                hideTimeout = setTimeout(function() {
+                    const dropdown = userMenu.querySelector('div[class*="opacity-0"]');
+                    if (dropdown) {
+                        dropdown.classList.add('opacity-0', 'invisible', 'translate-y-2');
+                        dropdown.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                    }
+                }, 300);
+            });
+        }
+    });
+</script>

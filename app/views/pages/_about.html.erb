@@ -1,0 +1,93 @@
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Mission</h2>
+            <p class="text-lg text-slate-600">
+                We believe in the transformative power of art and culture to heal, unite, and empower.
+                Our programs bridge diverse cultural heritages worldwide while addressing critical social challenges.
+            </p>
+        </div>
+
+        <!-- Impact Areas Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <% impacts = [
+        {
+          icon: "❤️",
+          title: "Autism Support",
+          description: "Using creative expression to help individuals with autism develop communication and social skills through art therapy programs.",
+          color: "bg-rose-100 text-rose-700",
+        },
+        {
+          icon: "🛡️",
+          title: "Violence Prevention",
+          description: "Channeling energy into positive creative outlets, reducing violence through cultural engagement and artistic expression.",
+          color: "bg-blue-100 text-blue-700",
+        },
+        {
+          icon: "👥",
+          title: "Dispute Resolution",
+          description: "Facilitating dialogue and understanding through collaborative art projects that bring communities together.",
+          color: "bg-green-100 text-green-700",
+        },
+        {
+          icon: "🎨",
+          title: "Cultural Heritage",
+          description: "Preserving and celebrating global cultural traditions through exhibitions, performances, and education worldwide.",
+          color: "bg-amber-100 text-amber-700",
+        }
+      ] %>
+
+            <% impacts.each do |impact| %>
+            <div class="bg-white border-2 border-slate-100 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                <div class="w-14 h-14 <%= impact[:color] %> rounded-lg flex items-center justify-center mb-4">
+                    <span class="text-2xl"><%= impact[:icon] %></span>
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-3"><%= impact[:title] %></h3>
+                <p class="text-sm text-slate-600"><%= impact[:description] %></p>
+            </div>
+            <% end %>
+        </div>
+
+        <!-- Image Section -->
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="relative">
+                <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1627835348756-6e6a8dc674a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjB0aGVyYXB5JTIwYXV0aXNtfGVufDF8fHx8MTc2MDk0MjY2NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral" alt="Art Therapy" class="w-full h-full object-cover" />
+                </div>
+                <!-- Decorative Pattern Overlay -->
+                <div class="absolute -bottom-4 -right-4 w-24 h-24 border-4 border-amber-600 rounded-xl -z-10"></div>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold text-slate-900">
+                    Art as a Tool for Social Change
+                </h3>
+                <p class="text-slate-600">
+                    For over a decade, we've been at the forefront of using creative expression as a
+                    catalyst for positive change. Our unique approach combines diverse cultural art
+                    forms from around the world with contemporary practices.
+                </p>
+                <p class="text-slate-600">
+                    Through workshops, exhibitions, performances, and educational programs, we create
+                    safe spaces where individuals can express themselves, heal, and connect with others.
+                </p>
+
+                <div class="flex items-center gap-8 pt-4">
+                    <div>
+                        <div class="text-amber-700 text-2xl font-bold">500+</div>
+                        <p class="text-sm text-slate-600">Lives Impacted</p>
+                    </div>
+                    <div>
+                        <div class="text-amber-700 text-2xl font-bold">50+</div>
+                        <p class="text-sm text-slate-600">Events Hosted</p>
+                    </div>
+                    <div>
+                        <div class="text-amber-700 text-2xl font-bold">25+</div>
+                        <p class="text-sm text-slate-600">Partner Organizations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

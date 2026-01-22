@@ -1,0 +1,158 @@
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Exhibitions Section -->
+        <div class="mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Art Exhibitions</h2>
+                <p class="text-lg text-slate-600">
+                    Immerse yourself in our curated exhibitions celebrating diverse global artistic heritage.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <% exhibitions = [
+          {
+            title: "Rhythms of the Diaspora",
+            date: "Nov 15 - Dec 20, 2025",
+            location: "London Cultural Centre",
+            image: "https://images.unsplash.com/photo-1719398026703-0d3f3d162e51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjBleGhpYml0aW9uJTIwZ2FsbGVyeXxlbnwxfHx8fDE3NjA4NTkxMzh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            status: "Upcoming",
+          },
+          {
+            title: "African Textiles: Past & Present",
+            date: "Oct 1 - Oct 31, 2025",
+            location: "Manchester Art Gallery",
+            image: "https://images.unsplash.com/photo-1596626417050-39c7f6ddd2c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYXJ0JTIwcGF0dGVybnxlbnwxfHx8fDE3NjA5NDI2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            status: "Current",
+          },
+          {
+            title: "Healing Through Art",
+            date: "Aug 15 - Sep 30, 2025",
+            location: "Birmingham Community Hall",
+            image: "https://images.unsplash.com/photo-1627835348756-6e6a8dc674a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjB0aGVyYXB5JTIwYXV0aXNtfGVufDF8fHx8MTc2MDk0MjY2NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            status: "Past",
+          }
+        ] %>
+
+                <% exhibitions.each do |exhibition| %>
+                <div class="bg-white border-2 border-slate-100 rounded-xl overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div class="aspect-[4/3] overflow-hidden relative">
+                        <img src="<%= exhibition[:image] %>" alt="<%= exhibition[:title] %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-xs <%= 
+                exhibition[:status] == 'Current' ? 'bg-green-500 text-white' : 
+                exhibition[:status] == 'Upcoming' ? 'bg-blue-500 text-white' : 
+                'bg-slate-500 text-white' 
+              %>">
+                            <%= exhibition[:status] %>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-slate-900 mb-3"><%= exhibition[:title] %></h3>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <div class="flex items-center gap-2">
+                                <svg class="h-4 w-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span><%= exhibition[:date] %></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="h-4 w-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span><%= exhibition[:location] %></span>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full bg-slate-100 text-slate-700 py-2 rounded-lg hover:bg-slate-200 transition-colors flex items-center justify-center gap-2">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+
+        <!-- Performances Section -->
+        <div>
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">Upcoming Performances</h2>
+                <p class="text-lg text-slate-600">
+                    Experience the vibrant energy of our cultural performances and community events.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <% performances = [
+          {
+            title: "Annual Cultural Festival",
+            date: "December 10, 2025",
+            location: "Royal Festival Hall, London",
+            image: "https://images.unsplash.com/photo-1609332058691-e9e1cab9b9b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWx0dXJhbCUyMGZlc3RpdmFsJTIwY2VsZWJyYXRpb258ZW58MXx8fHwxNzYwOTA1NDM4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            type: "Festival",
+          },
+          {
+            title: "Traditional Dance Showcase",
+            date: "November 25, 2025",
+            location: "Sadler's Wells Theatre",
+            image: "https://images.unsplash.com/photo-1760428300773-d63612e252c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWx0dXJhbCUyMGRhbmNlJTIwcGVyZm9ybWFuY2V8ZW58MXx8fHwxNzYwODUxMzUyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            type: "Performance",
+          },
+          {
+            title: "Drumming Circle Community Event",
+            date: "November 5, 2025",
+            location: "Brixton Recreation Centre",
+            image: "https://images.unsplash.com/photo-1680102028080-dc36082a81f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwaW5zdHJ1bWVudHMlMjBtdXNpY3xlbnwxfHx8fDE3NjA5NDI2NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+            type: "Workshop",
+          }
+        ] %>
+
+                <% performances.each do |performance| %>
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl overflow-hidden border-2 border-amber-100 hover:shadow-lg transition-shadow">
+                    <div class="aspect-[16/9] overflow-hidden">
+                        <img src="<%= performance[:image] %>" alt="<%= performance[:title] %>" class="w-full h-full object-cover" />
+                    </div>
+                    <div class="p-6">
+                        <div class="inline-block bg-amber-700 text-white px-3 py-1 rounded-full text-xs mb-3">
+                            <%= performance[:type] %>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900 mb-3"><%= performance[:title] %></h3>
+                        <div class="space-y-2 text-sm text-slate-600">
+                            <div class="flex items-center gap-2">
+                                <svg class="h-4 w-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                <span><%= performance[:date] %></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <svg class="h-4 w-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span><%= performance[:location] %></span>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full bg-amber-700 text-white py-2 rounded-lg hover:bg-amber-800 transition-colors">
+                            Book Tickets
+                        </button>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="mt-16 bg-slate-900 rounded-2xl p-8 md:p-12 text-center text-white">
+            <h3 class="text-2xl font-bold text-white mb-4">Book Us for Your Event</h3>
+            <p class="text-lg mb-8 text-slate-300 max-w-2xl mx-auto">
+                Looking for authentic cultural performances for your party, corporate event, or celebration?
+                We bring the richness of global cultural traditions to your special occasions worldwide.
+            </p>
+            <button class="bg-amber-600 text-white px-8 py-3 rounded-lg hover:bg-amber-700 transition-colors">
+                Request Performance Quote
+            </button>
+        </div>
+    </div>
+</section>

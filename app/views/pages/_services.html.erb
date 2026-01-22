@@ -1,0 +1,66 @@
+<section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Services</h2>
+            <p class="text-lg text-slate-600">
+                From educational programs to vibrant cultural celebrations, we offer a wide range of
+                services that bring communities together through art and culture.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <% services = [
+        {
+          icon: "🎓",
+          title: "Educational Courses",
+          description: "Comprehensive programs in global art, music, dance, and cultural studies from diverse traditions.",
+          image: "https://images.unsplash.com/photo-1680102028080-dc36082a81f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwaW5zdHJ1bWVudHMlMjBtdXNpY3xlbnwxfHx8fDE3NjA5NDI2NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        },
+        {
+          icon: "🖼️",
+          title: "Exhibitions",
+          description: "Curated art exhibitions showcasing contemporary and traditional artworks from diverse global cultures.",
+          image: "https://images.unsplash.com/photo-1719398026703-0d3f3d162e51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjBleGhpYml0aW9uJTIwZ2FsbGVyeXxlbnwxfHx8fDE3NjA4NTkxMzh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        },
+        {
+          icon: "🎵",
+          title: "Performances",
+          description: "Live cultural performances for parties, corporate events, and community celebrations.",
+          image: "https://images.unsplash.com/photo-1609332058691-e9e1cab9b9b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWx0dXJhbCUyMGZlc3RpdmFsJTIwY2VsZWJyYXRpb258ZW58MXx8fHwxNzYwOTA1NDM4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        },
+        {
+          icon: "👥",
+          title: "Therapy Programs",
+          description: "Specialized art therapy sessions for individuals with autism and communities affected by violence.",
+          image: "https://images.unsplash.com/photo-1627835348756-6e6a8dc674a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjB0aGVyYXB5JTIwYXV0aXNtfGVufDF8fHx8MTc2MDk0MjY2NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+        }
+      ] %>
+
+            <% services.each do |service| %>
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all">
+                <div class="aspect-[16/9] overflow-hidden">
+                    <img src="<%= service[:image] %>" alt="<%= service[:title] %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-12 h-12 bg-gradient-to-br from-amber-100 to-orange-100 rounded-lg flex items-center justify-center">
+                            <span class="text-2xl"><%= service[:icon] %></span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-slate-900"><%= service[:title] %></h3>
+                    </div>
+                    <p class="text-slate-600"><%= service[:description] %></p>
+                </div>
+            </div>
+            <% end %>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="mt-16 bg-gradient-to-r from-amber-700 via-orange-600 to-red-600 rounded-2xl p-8 md:p-12 text-center text-white">
+            <h3 class="text-2xl font-bold text-white mb-4">Ready to Join Our Community?</h3>
+            <p class="text-lg mb-8 text-amber-50 max-w-2xl mx-auto">
+                Whether you're looking to learn, heal, or celebrate culture, we have a program for you.
+            </p>
+            <%= link_to "Browse Available Courses", courses_path, class: "bg-white text-amber-700 px-8 py-3 rounded-lg hover:bg-amber-50 transition-colors" %>
+        </div>
+    </div>
+</section>

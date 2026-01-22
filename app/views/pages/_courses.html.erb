@@ -1,0 +1,159 @@
+<section class="py-20 min-h-screen bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl font-bold text-slate-900 mb-4">Our Courses</h2>
+            <p class="text-lg text-slate-600 mb-8">
+                Explore our comprehensive range of courses designed to educate, heal, and inspire.
+                <%= "Login to enroll and start your cultural journey." unless @logged_in %>
+            </p>
+
+            <% unless @logged_in %>
+            <%= link_to "Student Login", login_path, class: "bg-amber-700 text-white px-8 py-3 rounded-lg hover:bg-amber-800 transition-colors inline-flex items-center gap-2" %>
+            <% else %>
+            <div class="inline-flex items-center gap-2 bg-green-50 text-green-700 px-6 py-3 rounded-lg">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Logged in as <%= current_user.name %></span>
+                <%= link_to "My Profile", profile_path, class: "ml-4 text-sm underline hover:no-underline" %>
+                <%= link_to "Logout", logout_path, method: :delete, class: "ml-4 text-sm underline hover:no-underline" %>
+            </div>
+            <% end %>
+        </div>
+
+        <!-- Courses Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <% courses = [
+        {
+          id: '1',
+          title: 'African Drumming Fundamentals',
+          instructor: 'Kwame Osei',
+          price: '£89',
+          duration: '6 weeks',
+          students: 45,
+          rating: 4.8,
+          image: 'https://images.unsplash.com/photo-1680102028080-dc36082a81f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwaW5zdHJ1bWVudHMlMjBtdXNpY3xlbnwxfHx8fDE3NjA5NDI2NjZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+          description: 'Learn traditional West African drumming techniques and rhythms.',
+          category: 'Music',
+        },
+        {
+          id: '2',
+          title: 'Art Therapy for Autism',
+          instructor: 'Dr. Sarah Johnson',
+          price: '£120',
+          duration: '8 weeks',
+          students: 28,
+          rating: 4.9,
+          image: 'https://images.unsplash.com/photo-1627835348756-6e6a8dc674a6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjB0aGVyYXB5JTIwYXV0aXNtfGVufDF8fHx8MTc2MDk0MjY2NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+          description: 'Certified program for practitioners working with individuals on the autism spectrum.',
+          category: 'Therapy',
+        },
+        {
+          id: '3',
+          title: 'Contemporary African Dance',
+          instructor: 'Adama Koné',
+          price: '£75',
+          duration: '4 weeks',
+          students: 62,
+          rating: 4.7,
+          image: 'https://images.unsplash.com/photo-1760428300773-d63612e252c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWx0dXJhbCUyMGRhbmNlJTIwcGVyZm9ybWFuY2V8ZW58MXx8fHwxNzYwODUxMzUyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+          description: 'Explore the fusion of traditional African movements with contemporary dance.',
+          category: 'Dance',
+        },
+        {
+          id: '4',
+          title: 'Global Art History',
+          instructor: 'Prof. Michael Brown',
+          price: '£95',
+          duration: '10 weeks',
+          students: 38,
+          rating: 4.9,
+          image: 'https://images.unsplash.com/photo-1596626417050-39c7f6ddd2c9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZnJpY2FuJTIwYXJ0JTIwcGF0dGVybnxlbnwxfHx8fDE3NjA5NDI2NjR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+          description: 'Study the cultural exchange between diverse global art movements and traditions.',
+          category: 'Art History',
+        },
+        {
+          id: '5',
+          title: 'Conflict Resolution Through Art',
+          instructor: 'Jane Williams',
+          price: '£110',
+          duration: '6 weeks',
+          students: 31,
+          rating: 4.8,
+          image: 'https://images.unsplash.com/photo-1719398026703-0d3f3d162e51?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhcnQlMjBleGhpYml0aW9uJTIwZ2FsbGVyeXxlbnwxfHx8fDE3NjA4NTkxMzh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+          description: 'Learn to facilitate peace-building through collaborative art projects.',
+          category: 'Social Impact',
+        },
+        {
+          id: '6',
+          title: 'Cultural Event Planning',
+          instructor: 'Amara Diallo',
+          price: '£85',
+          duration: '5 weeks',
+          students: 52,
+          rating: 4.6,
+          image: 'https://images.unsplash.com/photo-1609332058691-e9e1cab9b9b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWx0dXJhbCUyMGZlc3RpdmFsJTIwY2VsZWJyYXRpb258ZW58MXx8fHwxNzYwOTA1NDM4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+          description: 'Master the art of organizing memorable cultural celebrations and exhibitions.',
+          category: 'Events',
+        }
+      ] %>
+
+            <% courses.each do |course| %>
+            <div class="bg-white border-2 border-slate-100 rounded-xl overflow-hidden hover:shadow-xl transition-all group">
+                <div class="aspect-[16/9] overflow-hidden relative">
+                    <img src="<%= course[:image] %>" alt="<%= course[:title] %>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="absolute top-3 right-3 bg-white px-3 py-1 rounded-full">
+                        <span class="text-amber-700"><%= course[:price] %></span>
+                    </div>
+                    <div class="absolute top-3 left-3 bg-amber-700 text-white px-3 py-1 rounded-full text-xs">
+                        <%= course[:category] %>
+                    </div>
+                </div>
+
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-slate-900 mb-2"><%= course[:title] %></h3>
+                    <p class="text-sm text-slate-600 mb-4">By <%= course[:instructor] %></p>
+                    <p class="text-sm text-slate-600 mb-4"><%= course[:description] %></p>
+
+                    <div class="flex items-center gap-4 text-sm text-slate-500 mb-4">
+                        <div class="flex items-center gap-1">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span><%= course[:duration] %></span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                            </svg>
+                            <span><%= course[:students] %></span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <svg class="h-4 w-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <span><%= course[:rating] %></span>
+                        </div>
+                    </div>
+
+                    <%= form_with url: enroll_path, method: :post do |form| %>
+                    <%= form.hidden_field :course_id, value: course[:id] %>
+                    <%= form.hidden_field :logged_in, value: @logged_in %>
+                    <%= form.submit @logged_in ? 'Enroll Now' : 'Login to Enroll', 
+                  class: "w-full bg-amber-700 text-white py-3 rounded-lg hover:bg-amber-800 transition-colors flex items-center justify-center gap-2" %>
+                    <% end %>
+                </div>
+            </div>
+            <% end %>
+        </div>
+
+        <!-- Info Box -->
+        <div class="mt-16 bg-amber-50 border-2 border-amber-200 rounded-xl p-8 text-center">
+            <h3 class="text-2xl font-semibold text-slate-900 mb-3">Looking for Custom Training?</h3>
+            <p class="text-slate-600 mb-6 max-w-2xl mx-auto">
+                We offer bespoke training programs for organizations, schools, and community groups.
+                Contact us to discuss your specific needs.
+            </p>
+            <%= link_to "Request Custom Course", contact_path, class: "bg-amber-700 text-white px-8 py-3 rounded-lg hover:bg-amber-800 transition-colors" %>
+        </div>
+    </div>
+</section>
