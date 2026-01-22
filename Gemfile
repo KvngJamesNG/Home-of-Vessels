@@ -29,7 +29,7 @@ gem "solid_queue"
 gem "solid_cable"
 
 
-gem "tailwindcss-rails", "~> 2.3"
+gem "tailwindcss-rails", "~> 4.4"
 
 gem 'gravtastic'
 
