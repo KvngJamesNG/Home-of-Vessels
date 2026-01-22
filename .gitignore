@@ -9,6 +9,8 @@
 
 # Ignore all environment files.
 /.env*
+node_modules
+.DS_Stor
 
 # Ignore all logfiles and tempfiles.
 /log/*
